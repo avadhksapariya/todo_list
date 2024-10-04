@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/cubit/todo_cubit.dart';
 
 class AddTodoForm extends StatefulWidget {
   const AddTodoForm({super.key});
@@ -26,7 +28,11 @@ class _AddTodoFormState extends State<AddTodoForm> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              // BlocProvider.of<TodoCubit>(context)
+              context.read<TodoCubit>().addTodo(todoNameController.text.trim());
+              Navigator.of(context).pop();
+            },
             child: const Text('Add'),
           ),
         ],
